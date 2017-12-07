@@ -6,14 +6,14 @@
 // In terms of user experience, your shopping list app must allow users to:
 
 // enter items they need to purchase by entering text and hitting "Return" or clicking the "Add item" button
- 'use strict';
+'use strict';
 
 function addNewItem(){
   $('#js-shopping-list-form').submit(function(event){
     event.preventDefault();
     // const newListItem = $(event.currentTarget).find('.js-shopping-list-entry');  
     let listItem = $('.js-shopping-list-entry').val();
-    $(".shopping-list").append(`
+    $('.shopping-list').append(`
     <li>
     <span class="shopping-item">${listItem}</span>
     <div class="shopping-item-controls">
@@ -29,7 +29,13 @@ function addNewItem(){
   });
 }
 
-console.log(addNewItem());
+function checkItem(){
+  $('.shopping-list').on('click', '.shopping-item-toggle', function(event) {
+$(this).closest('li').find('.shopping-item').toggleClass('shopping-item__checked'); 
+  });
+}
+checkItem();
+addNewItem();
 
 // $(".shopping-list li").clone().appendTo(".shopping-list");   
 
