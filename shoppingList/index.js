@@ -6,22 +6,44 @@
 // In terms of user experience, your shopping list app must allow users to:
 
 // enter items they need to purchase by entering text and hitting "Return" or clicking the "Add item" button
- 
-function(){
-    $('#js-shopping-list-form').sumbit(function(event)){
-      event.preventDefault();
-      const listItem = $(event.currentTarget).('.js-shopping-list-entry')  
-    }
+ 'use strict';
+
+function addNewItem(){
+  $('#js-shopping-list-form').submit(function(event){
+    event.preventDefault();
+    // const newListItem = $(event.currentTarget).find('.js-shopping-list-entry');  
+    let listItem = $('.js-shopping-list-entry').val();
+    $(".shopping-list").append(`
+    <li>
+    <span class="shopping-item">${listItem}</span>
+    <div class="shopping-item-controls">
+      <button class="shopping-item-toggle">
+        <span class="button-label">check</span>
+      </button>
+      <button class="shopping-item-delete">
+        <span class="button-label">delete</span>
+      </button>
+    </div>
+  </li>
+      `);
+  });
 }
-$(function() {
-    $('.js-form').submit(event => {
-      // this stops the default form submission behavior
-      event.preventDefault();
-      const userTextElement = $(event.currentTarget).find('#user-text');
-      $(".js-display-user-text").text(`user text is:  ${userTextElement.val()}`);
-      userTextElement.val("");
-    });  
-  })
+
+console.log(addNewItem());
+
+// $(".shopping-list li").clone().appendTo(".shopping-list");   
+
+
+
+// $(function() {
+//   $('.js-form').submit(event => {
+//     // this stops the default form submission behavior
+//     event.preventDefault();
+//     const userTextElement = $(event.currentTarget).find('#user-text');
+//     $('.js-display-user-text').text(`user text is:  ${userTextElement.val()}`);
+//     userTextElement.val('');
+//   });  
+// });
 // check and uncheck items on the list by clicking the "Check" button
 // permanently remove items from the list
 // Additionally:
